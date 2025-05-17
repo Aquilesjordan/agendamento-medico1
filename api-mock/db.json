@@ -1,0 +1,55 @@
+{
+  "especialidades": [
+    {
+      "id": "cc8e",
+      "nome": "Cardiologista"
+    },
+    {
+      "id": "40a2",
+      "nome": "Oftalmo"
+    }
+  ],
+  "convenios": [
+    {
+      "id": "7036",
+      "nome": "Unimed"
+    },
+    {
+      "id": "c801",
+      "nome": "Hapvida"
+    }
+  ],
+  "disponibilidades": [
+    {
+      "id": "c4f6",
+      "medico": "Felipe",
+      "especialidadeId": null,
+      "diaSemana": "Segunda-feira",
+      "horaInicio": "11:00",
+      "horaFim": "15:00",
+      "duracaoConsultaMinutos": 30
+    },
+    {
+      "id": "0d8a",
+      "especialidadeId": null,
+      "data": "2025-05-16",
+      "medico": ""
+    },
+    {
+      "id": "5f61",
+      "medico": "Aquele ",
+      "especialidadeId": null,
+      "diaSemana": "Segunda-feira",
+      "horaInicio": "21:00",
+      "horaFim": "22:00",
+      "duracaoConsultaMinutos": 30
+    },
+    {
+      "id": "4a98",
+      "especialidadeId": null,
+      "data": "2025-05-19",
+      "medico": ""
+    }
+  ],
+  "consultas": []
+}
