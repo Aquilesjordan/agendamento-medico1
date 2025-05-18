@@ -49,6 +49,88 @@
       "especialidadeId": null,
       "data": "2025-05-19",
       "medico": ""
+    },
+    {
+      "id": "dfbe",
+      "medico": "Aqele",
+      "especialidadeId": null,
+      "diaSemana": "Terça-feira",
+      "horaInicio": "15:20",
+      "horaFim": "16:21",
+      "duracaoConsultaMinutos": 30
+    },
+    {
+      "id": "b80f",
+      "medico": "aquele nome",
+      "especialidadesId": null,
+      "diaSemana": "Quinta-feira",
+      "horaInicio": "15:01",
+      "horaFim": "15:38",
+      "duracaoConsultaMinutos": 30
+    },
+    {
+      "id": "636d",
+      "medico": "aquele caba",
+      "especialidadesId": "40a2",
+      "diaSemana": "Sexta-feira",
+      "horaInicio": "15:41",
+      "horaFim": "19:41",
+      "duracaoConsultaMinutos": 30
+    },
+    {
+      "id": "e6d4",
+      "especialidadesId": null,
+      "data": "2025-05-18",
+      "medico": ""
+    },
+    {
+      "id": "43ab",
+      "especialidadeId": null,
+      "data": "2025-05-19",
+      "medico": "",
+      "diaSemana": "Domingo"
+    },
+    {
+      "id": "37ba",
+      "especialidadeId": null,
+      "data": "2025-05-19",
+      "medico": "",
+      "diaSemana": "Domingo"
+    },
+    {
+      "id": "c39f",
+      "especialidadeId": null,
+      "data": "2025-05-19",
+      "medico": "",
+      "diaSemana": "Domingo"
+    },
+    {
+      "id": "bb1f",
+      "especialidadeId": null,
+      "data": "2025-05-19",
+      "medico": "",
+      "diaSemana": "Domingo"
+    },
+    {
+      "id": "3b66",
+      "especialidadeId": null,
+      "data": "2025-05-20",
+      "medico": "",
+      "diaSemana": "Segunda-feira"
+    },
+    {
+      "id": "376e",
+      "especialidadeId": null,
+      "data": "2025-05-19",
+      "medico": "",
+      "diaSemana": "Domingo"
+    },
+    {
+      "id": "f0b8",
+      "especialidadeId": null,
+      "data": "2025-05-20",
+      "medico": "asdas",
+      "diaSemana": "Segunda-feira"
     }
   ],
   "consultas": []
