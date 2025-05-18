@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Form, Button, Card, Row, Col, Alert } from 'react-bootstrap';
+import dayjs from 'dayjs';
+import  'dayjs/locale/pt-br';
 
 function AgendamentoForm() {
   const [paciente, setPaciente] = useState('');
@@ -14,6 +16,8 @@ function AgendamentoForm() {
   const [horariosDisponiveis, setHorariosDisponiveis] = useState([]);
   const [mensagem, setMensagem] = useState('');
 
+  dayjs.locale("pt-br")
+
   useEffect(() => {
     axios.get('http://localhost:3001/especialidades')
       .then(res => setEspecialidades(res.data));
@@ -25,17 +29,36 @@ function AgendamentoForm() {
     if (!especialidadeId || !data) return;
 
     try {
-      const response = await axios.post('http://localhost:3001/disponibilidades', {
-        especialidadeId: parseInt(especialidadeId),
-        data,
-        medico
-      });
+      const response = await axios.get('http://localhost:3001/disponibilidades');
+
+      // const responseCons = await axios.get('http://localhost:3001/consultas');
+
+      // const consultasArr = responseCons.data
+
+      const horariosDisponiveis = response.data
+      const filteredHorarios = []
+
+      horariosDisponiveis.forEach(hDisp => {
+
+        console.log(dayjs(data).format('ddd'))
+
+        if (hDisp.especialidadeId === parseInt(especialidadeId) && hDisp.diaSemana.toLowerCase() === dayjs(data).format('dddd')){
+
+            hDisp.disponive = false
+          filteredHorarios.push(hDisp)
+        }
+        
+      })
+
+
       setHorariosDisponiveis(response.data);
-    } catch (err) {
+    } catch  {
       alert('Erro ao buscar horários.');
     }
   };
 
+
+  console.log(horario)
   const agendarConsulta = async (e) => {
     e.preventDefault();
     if (!paciente || !especialidadeId || !convenioId || !horario) {
@@ -55,7 +78,7 @@ function AgendamentoForm() {
       setPaciente('');
       setHorario('');
       buscarHorarios(); // atualiza disponibilidade
-    } catch (err) {
+    } catch  {
       alert('Erro ao agendar consulta.');
     }
   };
@@ -124,12 +147,13 @@ function AgendamentoForm() {
               <option value="">Selecione um horário</option>
               {horariosDisponiveis.map((h, index) => (
                 <option
+                onClick={() => setHorario(h.horaInicio)}
                   key={index}
-                  value={h.disponivel ? h.horaInicio : ''}
-                  disabled={!h.disponivel}
+                  value={h.horaInicio}
+                  // disabled={!h.disponivel}
                 >
                   {h.horaInicio} - {h.horaFim}
-                  {h.disponivel ? ' (Disponível)' : ` (Ocupado por ${h.paciente})`}
+                  {h.disponivel}  
                 </option>
               ))}
             </Form.Select>
@@ -143,3 +167,5 @@ function AgendamentoForm() {
 }
 
 export default AgendamentoForm;
+// ? ' (Disponível)' : ` (Ocupado por ${h.paciente})`
+// h.disponivel ?

@@ -6,7 +6,7 @@ import { Card, Form, Button, Row, Col } from 'react-bootstrap';
 function DefinirDisponibilidadeForm() {
   const [medico, setMedico] = useState('');
   const [especialidades, setEspecialidades] = useState([]);
-  const [especialidadeId, setEspecialidadeId] = useState('');
+  const [especialidadesId, setEspecialidadesId] = useState('');
   const [diaSemana, setDiaSemana] = useState('');
   const [horaInicio, setHoraInicio] = useState('');
   const [horaFim, setHoraFim] = useState('');
@@ -20,7 +20,7 @@ function DefinirDisponibilidadeForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!medico || !especialidadeId || !diaSemana || !horaInicio || !horaFim || !duracaoConsultaMinutos) {
+    if (!medico || !especialidadesId || !diaSemana || !horaInicio || !horaFim || !duracaoConsultaMinutos) {
       alert('Preencha todos os campos');
       return;
     }
@@ -28,7 +28,7 @@ function DefinirDisponibilidadeForm() {
     try {
       await axios.post('http://localhost:3001/disponibilidades', {
         medico,
-        especialidadeId: parseInt(especialidadeId),
+        especialidadesId: (especialidadesId),
         diaSemana,
         horaInicio,
         horaFim,
@@ -37,7 +37,7 @@ function DefinirDisponibilidadeForm() {
 
       alert('Disponibilidade cadastrada com sucesso!');
       setMedico('');
-      setEspecialidadeId('');
+      setEspecialidadesId('');
       setDiaSemana('');
       setHoraInicio('');
       setHoraFim('');
@@ -65,7 +65,7 @@ function DefinirDisponibilidadeForm() {
             <Col md={6}>
               <Form.Group className="mb-3">
                 <Form.Label>Especialidade</Form.Label>
-                <Form.Select value={especialidadeId} onChange={e => setEspecialidadeId(e.target.value)}>
+                <Form.Select value={especialidadesId} onChange={e => setEspecialidadesId(e.target.value)}>
                   <option value="">Selecione</option>
                   {especialidades.map(e => <option key={e.id} value={e.id}>{e.nome}</option>)}
                 </Form.Select>
