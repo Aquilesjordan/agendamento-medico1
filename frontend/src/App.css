@@ -1,42 +1,35 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+body {
+  background-color: #f5f7fa;
+  font-family: 'Segoe UI', sans-serif;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+h1, h4, .card-title {
+  color: #1a3e72;
+  font-weight: 600;
 }
 
 .card {
-  padding: 2em;
+  border: none;
+  border-radius: 16px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.06);
+  margin-bottom: 24px;
 }
 
-.read-the-docs {
-  color: #888;
+button, .btn {
+  border-radius: 8px;
+  font-weight: 500;
+  padding: 8px 16px;
+}
+
+.form-control, .form-select {
+  border-radius: 8px;
+}
+
+hr {
+  border-top: 2px solid #dee2e6;
+  margin: 48px 0;
+}
+
+.alert {
+  border-radius: 12px;
 }
