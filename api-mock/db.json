@@ -65,6 +65,18 @@
       "agendamentoId": "0b66",
       "observacoes": "fefefefe",
       "dataAtendimento": "2025-05-19T22:12:00Z"
+    },
+    {
+      "id": "19e6",
+      "agendamentoId": "",
+      "observacoes": "",
+      "dataAtendimento": "2025-05-19T11:00:00Z"
+    },
+    {
+      "id": "ff85",
+      "agendamentoId": "",
+      "observacoes": "",
+      "dataAtendimento": "2025-05-19T11:00:00Z"
     }
   ],
   "agendamentos": [
@@ -144,6 +156,13 @@
       "especialidadeId": "c0f9",
       "convenioId": "7036",
       "dataHora": "2025-05-21T01:40:00Z"
+    },
+    {
+      "id": "41cf",
+      "paciente": "daaaaaaaaaaa",
+      "especialidadeId": "40a2",
+      "convenioId": "7036",
+      "dataHora": "2025-05-21T01:00:00Z"
     }
   ],
   "especialidades": [
@@ -362,6 +381,60 @@
       "diaSemana": "Segunda-feira",
       "horaInicio": "01:50",
       "horaFim": "02:50",
+      "duracaoConsultaMinutos": 30
+    },
+    {
+      "id": "a8f3",
+      "medico": "Dr Felipe",
+      "especialidadesId": "cc8e",
+      "diaSemana": "Segunda-feira",
+      "horaInicio": "01:00",
+      "horaFim": "14:01",
+      "duracaoConsultaMinutos": 30
+    },
+    {
+      "id": "9bb6",
+      "medico": "aquele medico",
+      "especialidadesId": "40a2",
+      "diaSemana": "Quarta-feira",
+      "horaInicio": "01:00",
+      "horaFim": "01:30",
+      "duracaoConsultaMinutos": 30
+    },
+    {
+      "id": "06d2",
+      "medico": "aquele medico",
+      "especialidadesId": "40a2",
+      "diaSemana": "Quarta-feira",
+      "horaInicio": "01:30",
+      "horaFim": "02:00",
+      "duracaoConsultaMinutos": 30
+    },
+    {
+      "id": "ba98",
+      "medico": "aquele medico",
+      "especialidadesId": "40a2",
+      "diaSemana": "Quarta-feira",
+      "horaInicio": "02:00",
+      "horaFim": "02:30",
+      "duracaoConsultaMinutos": 30
+    },
+    {
+      "id": "d58c",
+      "medico": "aquele medico",
+      "especialidadesId": "40a2",
+      "diaSemana": "Quarta-feira",
+      "horaInicio": "02:30",
+      "horaFim": "03:00",
+      "duracaoConsultaMinutos": 30
+    },
+    {
+      "id": "a289",
+      "medico": "aquele medico",
+      "especialidadesId": "40a2",
+      "diaSemana": "Quarta-feira",
+      "horaInicio": "03:00",
+      "horaFim": "03:30",
       "duracaoConsultaMinutos": 30
     }
   ],
