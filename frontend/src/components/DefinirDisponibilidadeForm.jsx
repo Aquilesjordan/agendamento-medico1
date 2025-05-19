@@ -69,6 +69,7 @@ function DefinirDisponibilidadeForm() {
       setHoraInicio('');
       setHoraFim('');
       setDuracaoConsultaMinutos(30);
+      window.location.reload();
     } catch (err) {
       alert('Erro ao salvar as disponibilidades.');
     }

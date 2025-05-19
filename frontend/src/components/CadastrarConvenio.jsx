@@ -14,6 +14,7 @@ function CadastrarConvenio() {
       await api.post('/convenios', { nome });
       alert('Convênio cadastrado com sucesso!');
       setNome('');
+      window.location.reload();
     } catch (err) {
       alert('Erro ao cadastrar convênio.');
     }

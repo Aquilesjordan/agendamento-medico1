@@ -14,6 +14,7 @@ function CadastrarEspecialidade() {
       await api.post('/especialidades', { nome });
       alert('Especialidade cadastrada com sucesso!');
       setNome('');
+      window.location.reload();
     } catch (err) {
       alert('Erro ao cadastrar especialidade.');
     }
