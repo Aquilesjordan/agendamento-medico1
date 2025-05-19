@@ -1,27 +1,43 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { Card, Form, Button, Alert } from 'react-bootstrap';
+import { api } from '../services/api';
+  
 
 function AtendimentoForm() {
   const [agendamentoId, setAgendamentoId] = useState('');
   const [observacoes, setObservacoes] = useState('');
   const [resultado, setResultado] = useState(null);
+  const [data, setData] = useState('');
 
   const gerarAtendimento = async (e) => {
     e.preventDefault();
-    try {
-      const response = await axios.post('http://localhost:3001/atendimentos', {
-        agendamentoId: parseInt(agendamentoId),
-        observacoes
+
+    api.get(`agendamentos?id=${agendamentoId}`).then((getresponse) => {
+      const agendamento = getresponse.data[0]; 
+
+      if (!agendamento) {
+        alert('Agendamento não encontrado.');
+        return;
+      }
+
+      api.post('atendimentos', {
+        agendamentoId: agendamentoId,
+        observacoes,
+        dataAtendimento: agendamento.dataHora
+      }).then((response) => {
+        setResultado(response.data);
+        alert('Atendimento gerado com sucesso!');
+        setAgendamentoId('');
+        setObservacoes('');
+      }).catch((err) => {
+        alert('Erro ao gerar atendimento.');
       });
-      setResultado(response.data);
-      alert('Atendimento gerado com sucesso!');
-      setAgendamentoId('');
-      setObservacoes('');
-    } catch (err) {
-      alert('Erro ao gerar atendimento.');
-    }
+    }).catch((err) => {
+      alert('Erro ao buscar agendamento.');
+    });
   };
+
 
   return (
     <Card>
@@ -31,7 +47,6 @@ function AtendimentoForm() {
           <Form.Group className="mb-3">
             <Form.Label>ID do Agendamento</Form.Label>
             <Form.Control
-              type="number"
               value={agendamentoId}
               onChange={e => setAgendamentoId(e.target.value)}
             />
