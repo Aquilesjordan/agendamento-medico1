@@ -21,6 +21,7 @@ function AgendamentoForm() {
   useEffect(() => {
     api.get('/especialidades').then(res => setEspecialidades(res.data));
     api.get('/convenios').then(res => setConvenios(res.data));
+    api.get('/disponibilidades').then(res => setConvenios(res.data));
   }, []);
 
   const buscarHorarios = async () => {
@@ -43,15 +44,17 @@ function AgendamentoForm() {
           h.diaSemana.toLowerCase() === diaSelecionado
         )
         .map(h => {
-          const dataHoraCompleta = `${data}T${h.horaInicio}:00Z`;
-          const agendamento = agendamentos.find(a => a.dataHora === dataHoraCompleta);
+        const dataHoraCompleta = `${data}T${h.horaInicio}:00Z`;
+        const agendamento = agendamentos.find(a => a.dataHora === dataHoraCompleta);
 
-          return {
-            ...h,
-            ocupado: !!agendamento,
-            paciente: agendamento?.paciente || null
-          };
-        });
+        return {
+          ...h,
+          ocupado: !!agendamento,
+          paciente: agendamento?.paciente || null,
+          medicoNome: h.medico || 'Médico não informado'
+        };
+      });
+
 
       setHorariosDisponiveis(horariosFiltrados);
     } catch (err) {
@@ -151,7 +154,7 @@ function AgendamentoForm() {
                   value={h.horaInicio}
                   disabled={h.ocupado}
                 >
-                  {h.horaInicio} - {h.horaFim} {h.ocupado ? `(Ocupado por ${h.paciente})` : '(Disponível)'}
+                  {h.horaInicio} - {h.horaFim} {h.ocupado ? `(Ocupado por ${h.paciente})` : `(Disponível com ${h.medicoNome})`}
                 </option>
               ))}
             </Form.Select>
