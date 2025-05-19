@@ -9,6 +9,7 @@ import AgendamentosList from './components/AgendamentosList';
 import AtendimentoForm from './components/AtendimentoForm';
 import DefinirDisponibilidadeForm from './components/DefinirDisponibilidadeForm';
 import ListarAtendimentos from './components/ListarAtendimentos';
+import './App.css'
 
 function App() {
   return (
