@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Card, Form, Button, Row, Col } from 'react-bootstrap';
-
+import { api } from '../services/api';
 
 function DefinirDisponibilidadeForm() {
   const [medico, setMedico] = useState('');
@@ -82,6 +82,8 @@ function DefinirDisponibilidadeForm() {
                   <option value="Quarta-feira">Quarta-feira</option>
                   <option value="Quinta-feira">Quinta-feira</option>
                   <option value="Sexta-feira">Sexta-feira</option>
+                  <option value="Sabado">Sabado</option>
+                  <option value="Domingo">Domingo</option>
                 </Form.Select>
               </Form.Group>
             </Col>

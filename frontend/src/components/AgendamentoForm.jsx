@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import { Form, Button, Card, Row, Col, Alert } from 'react-bootstrap';
 import dayjs from 'dayjs';
 import 'dayjs/locale/pt-br';
+import { api } from '../services/api';
 
 function AgendamentoForm() {
   const [paciente, setPaciente] = useState('');
@@ -19,10 +19,8 @@ function AgendamentoForm() {
   dayjs.locale("pt-br");
 
   useEffect(() => {
-    axios.get('http://localhost:3001/especialidades')
-      .then(res => setEspecialidades(res.data));
-    axios.get('http://localhost:3001/convenios')
-      .then(res => setConvenios(res.data));
+    api.get('/especialidades').then(res => setEspecialidades(res.data));
+    api.get('/convenios').then(res => setConvenios(res.data));
   }, []);
 
   const buscarHorarios = async () => {
@@ -30,8 +28,8 @@ function AgendamentoForm() {
 
     try {
       const [resDisponibilidades, resAgendamentos] = await Promise.all([
-        axios.get('http://localhost:3001/disponibilidades'),
-        axios.get('http://localhost:3001/agendamentos'),
+        api.get('/disponibilidades'),
+        api.get('/agendamentos'),
       ]);
 
       const disponibilidades = resDisponibilidades.data;
@@ -69,7 +67,7 @@ function AgendamentoForm() {
     }
 
     try {
-      await axios.post('http://localhost:3001/agendamentos', {
+      await api.post('/agendamentos', {
         paciente,
         especialidadeId: (especialidadesId),
         convenioId: (convenioId),
@@ -79,7 +77,7 @@ function AgendamentoForm() {
       setMensagem('Consulta agendada com sucesso!');
       setPaciente('');
       setHorario('');
-      buscarHorarios(); // atualiza disponibilidade
+      buscarHorarios();
     } catch (err) {
       alert('Erro ao agendar consulta.');
     }

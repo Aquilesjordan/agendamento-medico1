@@ -10,7 +10,7 @@ function CadastrarEspecialidade() {
     if (!nome.trim()) return alert('Informe um nome.');
 
     try {
-      await axios.post('http://localhost:3001/especialidades', { nome });
+      await api.post('/especialidades', { nome });
       alert('Especialidade cadastrada com sucesso!');
       setNome('');
     } catch (err) {

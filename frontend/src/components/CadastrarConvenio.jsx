@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { Card, Form, Button } from 'react-bootstrap';
+import { api } from '../services/api';
 
 function CadastrarConvenio() {
   const [nome, setNome] = useState('');
@@ -10,7 +11,7 @@ function CadastrarConvenio() {
     if (!nome.trim()) return alert('Informe um nome.');
 
     try {
-      await axios.post('http://localhost:3001/convenios', { nome });
+      await api.post('/convenios', { nome });
       alert('Convênio cadastrado com sucesso!');
       setNome('');
     } catch (err) {

@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { ListGroup } from 'react-bootstrap';
+import { api } from '../services/api';
 
 function EspecialidadesList({ onSelect }) {
   const [especialidades, setEspecialidades] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:3001/especialidades')
+    api.get('http://localhost:3001/especialidades')
       .then(response => setEspecialidades(response.data));
   }, []);
 

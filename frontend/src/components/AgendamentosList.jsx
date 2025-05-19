@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Card, Form, Button, ListGroup } from 'react-bootstrap';
+import { api } from '../services/api';
 
 function AgendamentosList() {
   const [agendamentos, setAgendamentos] = useState([]);
@@ -14,7 +15,7 @@ function AgendamentosList() {
     if (dataInicio) params.append('dataInicio', dataInicio);
     if (dataFim) params.append('dataFim', dataFim);
 
-    const response = await axios.get(`http://localhost:3001/agendamentos?${params.toString()}`);
+    const response = await api.get(`/agendamentos?${params.toString()}`);
     setAgendamentos(response.data);
   };
 

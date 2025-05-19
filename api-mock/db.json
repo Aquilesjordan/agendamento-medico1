@@ -130,6 +130,13 @@
       "especialidadeId": "c0f9",
       "convenioId": "7036",
       "dataHora": "2025-05-19T07:55:00Z"
+    },
+    {
+      "id": "0981",
+      "paciente": "asdfasdfasdf",
+      "especialidadeId": null,
+      "convenioId": 7036,
+      "dataHora": "2025-05-25T13:29:00Z"
     }
   ],
   "especialidades": [
@@ -312,6 +319,24 @@
       "diaSemana": "Segunda-feira",
       "horaInicio": "07:55",
       "horaFim": "08:15",
+      "duracaoConsultaMinutos": 30
+    },
+    {
+      "id": "fb72",
+      "medico": "sadfasdfasdf",
+      "especialidadesId": "40a2",
+      "diaSemana": "Domingo",
+      "horaInicio": "00:28",
+      "horaFim": "23:29",
+      "duracaoConsultaMinutos": 30
+    },
+    {
+      "id": "421a",
+      "medico": "Felipao",
+      "especialidadesId": "cc8e",
+      "diaSemana": "Domingo",
+      "horaInicio": "13:29",
+      "horaFim": "00:29",
       "duracaoConsultaMinutos": 30
     }
   ],

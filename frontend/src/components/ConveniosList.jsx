@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { ListGroup } from 'react-bootstrap';
+import { api } from '../services/api';
 
 function ConveniosList({ onSelect }) {
   const [convenios, setConvenios] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:3001/convenios')
+    api.get('/convenios')
       .then(response => setConvenios(response.data));
   }, []);
 
