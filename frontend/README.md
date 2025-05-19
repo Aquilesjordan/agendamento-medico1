@@ -45,6 +45,13 @@ npm install
 npm run dev
 
 
+## 🐳 Executando com Docker
+Para facilitar a execução, você pode rodar todo o sistema com Docker, sem precisar instalar Node.js ou JSON Server localmente.
+
+### 1. Para rodar:
+
+docker-compose up --build
+
 
 🧪 Endpoints da API (mock)
 POST /especialidades – Cadastrar especialidade
@@ -55,9 +62,9 @@ POST /convenios – Cadastrar convênio
 
 GET /convenios – Listar convênios
 
-POST /disponibilidades/definir – Cadastrar disponibilidade
+POST /disponibilidades – Cadastrar disponibilidade
 
-POST /disponibilidades – Obter horários para data/especialidade
+GET /disponibilidades – Obter horários para data/especialidade
 
 POST /agendamentos – Agendar consulta
 
