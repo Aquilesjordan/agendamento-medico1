@@ -49,6 +49,7 @@ function AtendimentoForm() {
             <Form.Control
               value={agendamentoId}
               onChange={e => setAgendamentoId(e.target.value)}
+              required
             />
           </Form.Group>
 
