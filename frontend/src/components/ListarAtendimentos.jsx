@@ -9,14 +9,42 @@ function ListarAtendimentos() {
   const [dataFim, setDataFim] = useState('');
 
   const buscarAtendimentos = async () => {
-    const params = new URLSearchParams();
-    if (filtroPaciente) params.append('paciente', filtroPaciente);
-    if (dataInicio) params.append('dataInicio', dataInicio);
-    if (dataFim) params.append('dataFim', dataFim);
+  try {
+    // Busca todos atendimentos e agendamentos
+    const [resAtendimentos, resAgendamentos] = await Promise.all([
+      api.get('/atendimentos'),
+      api.get('/agendamentos'),
+    ]);
 
-    const response = await api.get(`/atendimentos?${params.toString()}`);
-    setAtendimentos(response.data);
-  };
+    const atendimentosComPaciente = resAtendimentos.data.map(atendimento => {
+      const agendamento = resAgendamentos.data.find(a => a.id === atendimento.agendamentoId);
+      return {
+        ...atendimento,
+        paciente: agendamento?.paciente || '', // adiciona paciente se existir
+      };
+    });
+
+    const filtrados = atendimentosComPaciente.filter(a => {
+      if (!a.dataAtendimento) return false;
+
+      const dataAtendimento = new Date(a.dataAtendimento);
+      if (isNaN(dataAtendimento)) return false;
+
+      const dataISO = dataAtendimento.toISOString().split('T')[0];
+      const pacienteOK = !filtroPaciente || a.paciente.toLowerCase().includes(filtroPaciente.toLowerCase());
+      const inicioOK = !dataInicio || dataISO >= dataInicio;
+      const fimOK = !dataFim || dataISO <= dataFim;
+
+      return pacienteOK && inicioOK && fimOK;
+    });
+
+    setAtendimentos(filtrados);
+  } catch (err) {
+    alert('Erro ao buscar atendimentos.');
+  }
+};
+
+
 
   return (
     <Card>
