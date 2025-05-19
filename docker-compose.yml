@@ -4,18 +4,13 @@ services:
   frontend:
     build: ./frontend
     ports:
-      - "5173:5173"
-    volumes:
-      - ./frontend:/app
-    command: npm run dev
-    working_dir: /app
-    stdin_open: true
-    tty: true
+      - "5173:80"
+    depends_on:
+      - api
 
-  json-server:
+  api:
     image: clue/json-server
     ports:
       - "3001:80"
     volumes:
       - ./api-mock/db.json:/data/db.json
-    command: json-server --watch /data/db.json
