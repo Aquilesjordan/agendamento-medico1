@@ -10,14 +10,32 @@ function AgendamentosList() {
   const [dataFim, setDataFim] = useState('');
 
   const buscarAgendamentos = async () => {
-    const params = new URLSearchParams();
-    if (filtroPaciente) params.append('paciente', filtroPaciente);
-    if (dataInicio) params.append('dataInicio', dataInicio);
-    if (dataFim) params.append('dataFim', dataFim);
+  try {
+    const response = await api.get(`/agendamentos`);
+    let dados = response.data;
 
-    const response = await api.get(`/agendamentos?${params.toString()}`);
-    setAgendamentos(response.data);
-  };
+    if (filtroPaciente) {
+      dados = dados.filter(a =>
+        a.paciente?.toLowerCase().includes(filtroPaciente.toLowerCase())
+      );
+    }
+
+    if (dataInicio) {
+      dados = dados.filter(a => new Date(a.dataHora) >= new Date(dataInicio));
+    }
+
+    if (dataFim) {
+      const dataFimCompleta = new Date(dataFim);
+      dataFimCompleta.setHours(23, 59, 59, 999);
+      dados = dados.filter(a => new Date(a.dataHora) <= dataFimCompleta);
+    }
+
+    setAgendamentos(dados);
+  } catch (err) {
+    alert("Erro ao buscar agendamentos.");
+  }
+};
+
 
   return (
     <Card>
