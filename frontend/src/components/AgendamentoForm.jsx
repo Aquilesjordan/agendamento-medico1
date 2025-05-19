@@ -8,6 +8,7 @@ function AgendamentoForm() {
   const [paciente, setPaciente] = useState('');
   const [especialidades, setEspecialidades] = useState([]);
   const [convenios, setConvenios] = useState([]);
+  const [medicos, setMedicos] = useState([]);
   const [especialidadesId, setEspecialidadesId] = useState('');
   const [convenioId, setConvenioId] = useState('');
   const [horario, setHorario] = useState('');
@@ -21,7 +22,10 @@ function AgendamentoForm() {
   useEffect(() => {
     api.get('/especialidades').then(res => setEspecialidades(res.data));
     api.get('/convenios').then(res => setConvenios(res.data));
-    api.get('/disponibilidades').then(res => setConvenios(res.data));
+    api.get('/disponibilidades').then(res => {
+      const medicosUnicos = [...new Set(res.data.map(d => d.medico).filter(Boolean))];
+      setMedicos(medicosUnicos);
+    });
   }, []);
 
   const buscarHorarios = async () => {
@@ -35,26 +39,26 @@ function AgendamentoForm() {
 
       const disponibilidades = resDisponibilidades.data;
       const agendamentos = resAgendamentos.data;
-
       const diaSelecionado = dayjs(data).locale('pt-br').format('dddd').toLowerCase();
 
       const horariosFiltrados = disponibilidades
-        .filter(h =>
-          h.especialidadesId === (especialidadesId) &&
-          h.diaSemana.toLowerCase() === diaSelecionado
-        )
-        .map(h => {
+      .filter(h =>
+        h.especialidadesId === (especialidadesId) &&
+        h.diaSemana.toLowerCase() === diaSelecionado &&
+        (medico === '' || h.medico?.toLowerCase() === medico.toLowerCase())
+      )
+      .map(h => {
         const dataHoraCompleta = `${data}T${h.horaInicio}:00Z`;
         const agendamento = agendamentos.find(a => a.dataHora === dataHoraCompleta);
 
         return {
-          ...h,
+          ...h, 
           ocupado: !!agendamento,
           paciente: agendamento?.paciente || null,
           medicoNome: h.medico || 'Médico não informado'
         };
       });
-
+    ;
 
       setHorariosDisponiveis(horariosFiltrados);
     } catch (err) {
@@ -83,7 +87,9 @@ function AgendamentoForm() {
         dataHora: `${data}T${horario}:00Z`,
         medico: nomeMedico
       });
-
+      if (horarioSelecionado?.id) {
+        await api.patch(`/disponibilidades/${horarioSelecionado.id}`, { ocupado: true });
+      }
       setMensagem('Consulta agendada com sucesso!');
       setPaciente('');
       setHorario('');
@@ -143,7 +149,12 @@ function AgendamentoForm() {
             <Col md={5}>
               <Form.Group className="mb-3">
                 <Form.Label>Médico (opcional)</Form.Label>
-                <Form.Control type="text" value={medico} onChange={e => setMedico(e.target.value)} />
+                <Form.Select value={medico} onChange={e => setMedico(e.target.value)}>
+                  <option value="">Todos os médicos</option>
+                  {medicos.map((m, idx) => (
+                    <option key={idx} value={m}>{m}</option>
+                  ))}
+                </Form.Select>
               </Form.Group>
             </Col>
             <Col md={2} className="d-flex align-items-end">

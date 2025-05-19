@@ -7,7 +7,7 @@ function EspecialidadesList({ onSelect }) {
   const [especialidades, setEspecialidades] = useState([]);
 
   useEffect(() => {
-    api.get('http://localhost:3001/especialidades')
+    api.get('/especialidades')
       .then(response => setEspecialidades(response.data));
   }, []);
 

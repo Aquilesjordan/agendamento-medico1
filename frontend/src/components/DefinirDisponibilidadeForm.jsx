@@ -63,7 +63,6 @@ function DefinirDisponibilidadeForm() {
 
       alert('Todas as disponibilidades foram salvas com sucesso!');
 
-      // Limpa os campos
       setMedico('');
       setEspecialidadesId('');
       setDiaSemana('');
@@ -71,7 +70,6 @@ function DefinirDisponibilidadeForm() {
       setHoraFim('');
       setDuracaoConsultaMinutos(30);
     } catch (err) {
-      console.error(err);
       alert('Erro ao salvar as disponibilidades.');
     }
   };
