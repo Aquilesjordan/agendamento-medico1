@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { Card, Form, Button } from 'react-bootstrap';
+import { api } from '../services/api';
 
 function CadastrarEspecialidade() {
   const [nome, setNome] = useState('');
