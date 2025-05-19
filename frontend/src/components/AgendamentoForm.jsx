@@ -2,13 +2,13 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Form, Button, Card, Row, Col, Alert } from 'react-bootstrap';
 import dayjs from 'dayjs';
-import  'dayjs/locale/pt-br';
+import 'dayjs/locale/pt-br';
 
 function AgendamentoForm() {
   const [paciente, setPaciente] = useState('');
   const [especialidades, setEspecialidades] = useState([]);
   const [convenios, setConvenios] = useState([]);
-  const [especialidadeId, setEspecialidadeId] = useState('');
+  const [especialidadesId, setEspecialidadesId] = useState('');
   const [convenioId, setConvenioId] = useState('');
   const [horario, setHorario] = useState('');
   const [data, setData] = useState('');
@@ -16,7 +16,7 @@ function AgendamentoForm() {
   const [horariosDisponiveis, setHorariosDisponiveis] = useState([]);
   const [mensagem, setMensagem] = useState('');
 
-  dayjs.locale("pt-br")
+  dayjs.locale("pt-br");
 
   useEffect(() => {
     axios.get('http://localhost:3001/especialidades')
@@ -26,42 +26,44 @@ function AgendamentoForm() {
   }, []);
 
   const buscarHorarios = async () => {
-    if (!especialidadeId || !data) return;
+    if (!especialidadesId || !data) return;
 
     try {
-      const response = await axios.get('http://localhost:3001/disponibilidades');
+      const [resDisponibilidades, resAgendamentos] = await Promise.all([
+        axios.get('http://localhost:3001/disponibilidades'),
+        axios.get('http://localhost:3001/agendamentos'),
+      ]);
 
-      // const responseCons = await axios.get('http://localhost:3001/consultas');
+      const disponibilidades = resDisponibilidades.data;
+      const agendamentos = resAgendamentos.data;
 
-      // const consultasArr = responseCons.data
+      const diaSelecionado = dayjs(data).locale('pt-br').format('dddd').toLowerCase();
 
-      const horariosDisponiveis = response.data
-      const filteredHorarios = []
+      const horariosFiltrados = disponibilidades
+        .filter(h =>
+          h.especialidadesId === (especialidadesId) &&
+          h.diaSemana.toLowerCase() === diaSelecionado
+        )
+        .map(h => {
+          const dataHoraCompleta = `${data}T${h.horaInicio}:00Z`;
+          const agendamento = agendamentos.find(a => a.dataHora === dataHoraCompleta);
 
-      horariosDisponiveis.forEach(hDisp => {
+          return {
+            ...h,
+            ocupado: !!agendamento,
+            paciente: agendamento?.paciente || null
+          };
+        });
 
-        console.log(dayjs(data).format('ddd'))
-
-        if (hDisp.especialidadeId === parseInt(especialidadeId) && hDisp.diaSemana.toLowerCase() === dayjs(data).format('dddd')){
-
-            hDisp.disponive = false
-          filteredHorarios.push(hDisp)
-        }
-        
-      })
-
-
-      setHorariosDisponiveis(response.data);
-    } catch  {
+      setHorariosDisponiveis(horariosFiltrados);
+    } catch (err) {
       alert('Erro ao buscar horários.');
     }
   };
 
-
-  console.log(horario)
   const agendarConsulta = async (e) => {
     e.preventDefault();
-    if (!paciente || !especialidadeId || !convenioId || !horario) {
+    if (!paciente || !especialidadesId || !convenioId || !horario) {
       alert('Preencha todos os campos!');
       return;
     }
@@ -69,8 +71,8 @@ function AgendamentoForm() {
     try {
       await axios.post('http://localhost:3001/agendamentos', {
         paciente,
-        especialidadeId: parseInt(especialidadeId),
-        convenioId: parseInt(convenioId),
+        especialidadeId: (especialidadesId),
+        convenioId: (convenioId),
         dataHora: `${data}T${horario}:00Z`
       });
 
@@ -78,7 +80,7 @@ function AgendamentoForm() {
       setPaciente('');
       setHorario('');
       buscarHorarios(); // atualiza disponibilidade
-    } catch  {
+    } catch (err) {
       alert('Erro ao agendar consulta.');
     }
   };
@@ -105,7 +107,7 @@ function AgendamentoForm() {
             <Col md={6}>
               <Form.Group className="mb-3">
                 <Form.Label>Especialidade</Form.Label>
-                <Form.Select value={especialidadeId} onChange={e => setEspecialidadeId(e.target.value)}>
+                <Form.Select value={especialidadesId} onChange={e => setEspecialidadesId(e.target.value)}>
                   <option value="">Selecione</option>
                   {especialidades.map(e => <option key={e.id} value={e.id}>{e.nome}</option>)}
                 </Form.Select>
@@ -147,13 +149,11 @@ function AgendamentoForm() {
               <option value="">Selecione um horário</option>
               {horariosDisponiveis.map((h, index) => (
                 <option
-                onClick={() => setHorario(h.horaInicio)}
                   key={index}
                   value={h.horaInicio}
-                  // disabled={!h.disponivel}
+                  disabled={h.ocupado}
                 >
-                  {h.horaInicio} - {h.horaFim}
-                  {h.disponivel}  
+                  {h.horaInicio} - {h.horaFim} {h.ocupado ? `(Ocupado por ${h.paciente})` : '(Disponível)'}
                 </option>
               ))}
             </Form.Select>
@@ -167,5 +167,3 @@ function AgendamentoForm() {
 }
 
 export default AgendamentoForm;
-// ? ' (Disponível)' : ` (Ocupado por ${h.paciente})`
-// h.disponivel ?
