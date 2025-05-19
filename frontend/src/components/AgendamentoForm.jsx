@@ -68,13 +68,20 @@ function AgendamentoForm() {
       alert('Preencha todos os campos!');
       return;
     }
+    const especialidade = especialidades.find(e => e.id === (especialidadesId));
+    const convenio = convenios.find(c => c.id === (convenioId));
+    const horarioSelecionado = horariosDisponiveis.find(h => h.horaInicio === horario);
+    const nomeMedico = horarioSelecionado?.medicoNome || 'Médico não informado';
 
     try {
       await api.post('/agendamentos', {
         paciente,
         especialidadeId: (especialidadesId),
+        especialidadeNome: especialidade?.nome || '',
         convenioId: (convenioId),
-        dataHora: `${data}T${horario}:00Z`
+        convenioNome: convenio?.nome || '',
+        dataHora: `${data}T${horario}:00Z`,
+        medico: nomeMedico
       });
 
       setMensagem('Consulta agendada com sucesso!');
