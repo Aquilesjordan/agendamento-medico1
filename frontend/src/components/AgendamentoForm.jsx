@@ -154,7 +154,7 @@ function AgendamentoForm() {
                   value={h.horaInicio}
                   disabled={h.ocupado}
                 >
-                  {h.horaInicio} - {h.horaFim} {h.ocupado ? `(Ocupado por ${h.paciente})` : `(Disponível com ${h.medicoNome})`}
+                  {h.horaInicio} - {h.horaFim} {h.ocupado ? `(Ocupado)` : `(Disponível com ${h.medicoNome})`}
                 </option>
               ))}
             </Form.Select>
