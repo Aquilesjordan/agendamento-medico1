@@ -1,440 +1,116 @@
 {
   "atendimentos": [
     {
-      "id": "7397",
-      "agendamentoId": "1360",
-      "observacoes": "goleiro defendeu"
-    },
-    {
-      "id": "5e20",
-      "agendamentoId": "7397",
-      "observacoes": "asdfasdfasdfa"
-    },
-    {
-      "id": "0f29",
-      "agendamentoId": "066",
-      "observacoes": "feito"
-    },
-    {
-      "id": "e7b2",
-      "agendamentoId": "066",
-      "observacoes": "feito"
-    },
-    {
-      "id": "0b8b",
-      "agendamentoId": "066",
-      "observacoes": "feito"
-    },
-    {
-      "id": "2d9a",
-      "agendamentoId": "12312312",
-      "observacoes": ""
-    },
-    {
-      "id": "380e",
-      "agendamentoId": "213123",
-      "observacoes": ""
-    },
-    {
-      "id": "9c0e",
-      "agendamentoId": "213123",
-      "observacoes": ""
-    },
-    {
-      "id": "87ab",
-      "agendamentoId": "066",
-      "observacoes": "gol"
-    },
-    {
-      "id": "b328",
-      "agendamentoId": "066",
-      "observacoes": "gol"
-    },
-    {
-      "id": "b6d6",
-      "agendamentoId": "066",
-      "observacoes": "asdfasdf"
-    },
-    {
-      "id": "f3f8",
-      "agendamentoId": "066",
-      "observacoes": "asdfasdf"
-    },
-    {
-      "id": "898f",
-      "agendamentoId": "0b66",
-      "observacoes": "fefefefe",
-      "dataAtendimento": "2025-05-19T22:12:00Z"
-    },
-    {
-      "id": "19e6",
-      "agendamentoId": "",
-      "observacoes": "",
-      "dataAtendimento": "2025-05-19T11:00:00Z"
-    },
-    {
-      "id": "ff85",
-      "agendamentoId": "",
-      "observacoes": "",
-      "dataAtendimento": "2025-05-19T11:00:00Z"
+      "id": "fadd",
+      "agendamentoId": "616f",
+      "observacoes": "Tudo certo com o coração!",
+      "dataAtendimento": "2025-05-19T14:50:00Z"
     }
   ],
   "agendamentos": [
     {
-      "id": "1835",
-      "paciente": "asdfsa",
-      "especialidadesId": null,
-      "convenioId": null,
-      "dataHora": "2025-05-19T11:00:00Z"
-    },
-    {
-      "id": "0e80",
-      "paciente": "sadfasdfas",
-      "especialidadesId": "cc8e",
-      "convenioId": "c801",
-      "dataHora": "2025-05-23T15:20:00Z"
-    },
-    {
-      "id": "fbb0",
-      "paciente": "aquele caba",
-      "especialidadesId": "cc8e",
-      "convenioId": "c801",
-      "dataHora": "2025-05-21T23:40:00Z"
-    },
-    {
-      "id": "0f34",
-      "paciente": "fdfdfdfd",
-      "especialidadeId": "cc8e",
-      "convenioId": "7036",
-      "dataHora": "2025-05-19T23:40:00Z"
-    },
-    {
-      "id": "999c",
-      "paciente": "asdfsadf",
-      "especialidadeId": "40a2",
-      "convenioId": "7036",
-      "dataHora": "2025-05-23T15:41:00Z"
-    },
-    {
-      "id": "1360",
-      "paciente": "Goleiro",
-      "especialidadeId": "cc8e",
-      "convenioId": "c801",
-      "dataHora": "2025-05-21T20:19:00Z"
-    },
-    {
-      "id": "09c6",
-      "paciente": "sadfasdf",
-      "especialidadeId": "cc8e",
-      "convenioId": "7036",
-      "dataHora": "2025-05-22T21:58:00Z"
-    },
-    {
-      "id": "0b66",
-      "paciente": "aaaaaaaaaa",
-      "especialidadeId": "cc8e",
-      "convenioId": "7036",
-      "dataHora": "2025-05-19T22:12:00Z"
-    },
-    {
-      "id": "4b7a",
-      "paciente": "Maria",
-      "especialidadeId": "c0f9",
-      "convenioId": "7036",
-      "dataHora": "2025-05-19T07:55:00Z"
-    },
-    {
-      "id": "0981",
-      "paciente": "asdfasdfasdf",
-      "especialidadeId": null,
-      "convenioId": 7036,
-      "dataHora": "2025-05-25T13:29:00Z"
-    },
-    {
-      "id": "2210",
-      "paciente": "Carol Cavalcante",
-      "especialidadeId": "c0f9",
-      "convenioId": "7036",
-      "dataHora": "2025-05-21T01:40:00Z"
-    },
-    {
-      "id": "41cf",
-      "paciente": "daaaaaaaaaaa",
-      "especialidadeId": "40a2",
-      "convenioId": "7036",
-      "dataHora": "2025-05-21T01:00:00Z"
+      "id": "616f",
+      "paciente": "Aquiles ",
+      "especialidadeId": "6d6f",
+      "especialidadeNome": "Cardiologista",
+      "convenioId": "2049",
+      "convenioNome": "Unimed",
+      "dataHora": "2025-05-19T14:50:00Z",
+      "medico": "Dr. Felipe"
     }
   ],
   "especialidades": [
     {
-      "id": "cc8e",
+      "id": "6d6f",
       "nome": "Cardiologista"
     },
     {
-      "id": "40a2",
-      "nome": "Oftalmo"
-    },
-    {
-      "id": "c0f9",
-      "nome": "Genicologista"
+      "id": "653b",
+      "nome": "Oftamologista"
     }
   ],
   "convenios": [
     {
-      "id": "7036",
+      "id": "2049",
       "nome": "Unimed"
     },
     {
-      "id": "c801",
+      "id": "aa10",
       "nome": "Hapvida"
     }
   ],
   "disponibilidades": [
     {
-      "id": "c4f6",
-      "medico": "Felipe",
-      "especialidadeId": null,
+      "id": "b156",
+      "medico": "Dr. Felipe",
+      "especialidadesId": "6d6f",
       "diaSemana": "Segunda-feira",
-      "horaInicio": "11:00",
-      "horaFim": "15:00",
-      "duracaoConsultaMinutos": 30
+      "horaInicio": "14:50",
+      "horaFim": "15:20",
+      "duracaoConsultaMinutos": 30,
+      "ocupado": true
     },
     {
-      "id": "0d8a",
-      "especialidadeId": null,
-      "data": "2025-05-16",
-      "medico": ""
-    },
-    {
-      "id": "5f61",
-      "medico": "Aquele ",
-      "especialidadeId": null,
+      "id": "eeb1",
+      "medico": "Dr. Felipe",
+      "especialidadesId": "6d6f",
       "diaSemana": "Segunda-feira",
-      "horaInicio": "21:00",
-      "horaFim": "22:00",
-      "duracaoConsultaMinutos": 30
-    },
-    {
-      "id": "4a98",
-      "especialidadeId": null,
-      "data": "2025-05-19",
-      "medico": ""
-    },
-    {
-      "id": "dfbe",
-      "medico": "Aqele",
-      "especialidadeId": null,
-      "diaSemana": "Terça-feira",
       "horaInicio": "15:20",
-      "horaFim": "16:21",
+      "horaFim": "15:50",
       "duracaoConsultaMinutos": 30
     },
     {
-      "id": "b80f",
-      "medico": "aquele nome",
-      "especialidadesId": null,
-      "diaSemana": "Quinta-feira",
-      "horaInicio": "15:01",
-      "horaFim": "15:38",
-      "duracaoConsultaMinutos": 30
-    },
-    {
-      "id": "636d",
-      "medico": "aquele caba",
-      "especialidadesId": "40a2",
-      "diaSemana": "Sexta-feira",
-      "horaInicio": "15:41",
-      "horaFim": "19:41",
-      "duracaoConsultaMinutos": 30
-    },
-    {
-      "id": "e6d4",
-      "especialidadesId": null,
-      "data": "2025-05-18",
-      "medico": ""
-    },
-    {
-      "id": "43ab",
-      "especialidadeId": null,
-      "data": "2025-05-19",
-      "medico": "",
-      "diaSemana": "Domingo"
-    },
-    {
-      "id": "37ba",
-      "especialidadeId": null,
-      "data": "2025-05-19",
-      "medico": "",
-      "diaSemana": "Domingo"
-    },
-    {
-      "id": "c39f",
-      "especialidadeId": null,
-      "data": "2025-05-19",
-      "medico": "",
-      "diaSemana": "Domingo"
-    },
-    {
-      "id": "bb1f",
-      "especialidadeId": null,
-      "data": "2025-05-19",
-      "medico": "",
-      "diaSemana": "Domingo"
-    },
-    {
-      "id": "3b66",
-      "especialidadeId": null,
-      "data": "2025-05-20",
-      "medico": "",
-      "diaSemana": "Segunda-feira"
-    },
-    {
-      "id": "376e",
-      "especialidadeId": null,
-      "data": "2025-05-19",
-      "medico": "",
-      "diaSemana": "Domingo"
-    },
-    {
-      "id": "f0b8",
-      "especialidadeId": null,
-      "data": "2025-05-20",
-      "medico": "asdas",
-      "diaSemana": "Segunda-feira"
-    },
-    {
-      "id": "8e6e",
-      "medico": "dsfadfasdf",
-      "especialidadesId": "cc8e",
+      "id": "291d",
+      "medico": "Dr. Felipe",
+      "especialidadesId": "6d6f",
       "diaSemana": "Segunda-feira",
-      "horaInicio": "23:40",
-      "horaFim": "23:46",
+      "horaInicio": "15:50",
+      "horaFim": "16:20",
       "duracaoConsultaMinutos": 30
     },
     {
-      "id": "e4c7",
-      "medico": "felipe",
-      "especialidadesId": "cc8e",
-      "diaSemana": "Quarta-feira",
-      "horaInicio": "20:19",
-      "horaFim": "21:19",
-      "duracaoConsultaMinutos": 30
-    },
-    {
-      "id": "36ca",
-      "medico": "Nome felipe",
-      "especialidadesId": "cc8e",
-      "diaSemana": "Quinta-feira",
-      "horaInicio": "21:58",
-      "horaFim": "23:59",
-      "duracaoConsultaMinutos": 30
-    },
-    {
-      "id": "1e54",
-      "medico": "asdfasdfasf",
-      "especialidadesId": "cc8e",
+      "id": "c382",
+      "medico": "Dr. Felipe",
+      "especialidadesId": "6d6f",
       "diaSemana": "Segunda-feira",
-      "horaInicio": "22:12",
-      "horaFim": "23:13",
+      "horaInicio": "16:20",
+      "horaFim": "16:50",
       "duracaoConsultaMinutos": 30
     },
     {
-      "id": "7b39",
-      "medico": "Felipe",
-      "especialidadesId": "c0f9",
+      "id": "85be",
+      "medico": "Dr. Felipe",
+      "especialidadesId": "6d6f",
       "diaSemana": "Segunda-feira",
-      "horaInicio": "07:55",
-      "horaFim": "08:15",
+      "horaInicio": "16:50",
+      "horaFim": "17:20",
       "duracaoConsultaMinutos": 30
     },
     {
-      "id": "fb72",
-      "medico": "sadfasdfasdf",
-      "especialidadesId": "40a2",
-      "diaSemana": "Domingo",
-      "horaInicio": "00:28",
-      "horaFim": "23:29",
-      "duracaoConsultaMinutos": 30
-    },
-    {
-      "id": "421a",
-      "medico": "Felipao",
-      "especialidadesId": "cc8e",
-      "diaSemana": "Domingo",
-      "horaInicio": "13:29",
-      "horaFim": "00:29",
-      "duracaoConsultaMinutos": 30
-    },
-    {
-      "id": "9831",
-      "medico": "Hudson Felipe",
-      "especialidadesId": "c0f9",
-      "diaSemana": "Quarta-feira",
-      "horaInicio": "01:40",
-      "horaFim": "02:40",
-      "duracaoConsultaMinutos": 30
-    },
-    {
-      "id": "0016",
-      "medico": "fefefefefe",
-      "especialidadesId": "cc8e",
+      "id": "d6e0",
+      "medico": "Dr. Felipe",
+      "especialidadesId": "6d6f",
       "diaSemana": "Segunda-feira",
-      "horaInicio": "01:50",
-      "horaFim": "02:50",
+      "horaInicio": "17:20",
+      "horaFim": "17:50",
       "duracaoConsultaMinutos": 30
     },
     {
-      "id": "a8f3",
-      "medico": "Dr Felipe",
-      "especialidadesId": "cc8e",
+      "id": "f9fa",
+      "medico": "Dr. Felipe",
+      "especialidadesId": "6d6f",
       "diaSemana": "Segunda-feira",
-      "horaInicio": "01:00",
-      "horaFim": "14:01",
+      "horaInicio": "17:50",
+      "horaFim": "18:20",
       "duracaoConsultaMinutos": 30
     },
     {
-      "id": "9bb6",
-      "medico": "aquele medico",
-      "especialidadesId": "40a2",
-      "diaSemana": "Quarta-feira",
-      "horaInicio": "01:00",
-      "horaFim": "01:30",
-      "duracaoConsultaMinutos": 30
-    },
-    {
-      "id": "06d2",
-      "medico": "aquele medico",
-      "especialidadesId": "40a2",
-      "diaSemana": "Quarta-feira",
-      "horaInicio": "01:30",
-      "horaFim": "02:00",
-      "duracaoConsultaMinutos": 30
-    },
-    {
-      "id": "ba98",
-      "medico": "aquele medico",
-      "especialidadesId": "40a2",
-      "diaSemana": "Quarta-feira",
-      "horaInicio": "02:00",
-      "horaFim": "02:30",
-      "duracaoConsultaMinutos": 30
-    },
-    {
-      "id": "d58c",
-      "medico": "aquele medico",
-      "especialidadesId": "40a2",
-      "diaSemana": "Quarta-feira",
-      "horaInicio": "02:30",
-      "horaFim": "03:00",
-      "duracaoConsultaMinutos": 30
-    },
-    {
-      "id": "a289",
-      "medico": "aquele medico",
-      "especialidadesId": "40a2",
-      "diaSemana": "Quarta-feira",
-      "horaInicio": "03:00",
-      "horaFim": "03:30",
+      "id": "465f",
+      "medico": "Dr. Felipe",
+      "especialidadesId": "6d6f",
+      "diaSemana": "Segunda-feira",
+      "horaInicio": "18:20",
+      "horaFim": "18:50",
       "duracaoConsultaMinutos": 30
     }
   ],
