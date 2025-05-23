@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import { ListGroup } from 'react-bootstrap';
 import { api } from '../services/api';
 
@@ -11,11 +10,15 @@ function ConveniosList({ onSelect }) {
       .then(response => setConvenios(response.data));
   }, []);
 
+  const conveniosOrdenados = [...convenios].sort((a, b) =>
+    a.nome.localeCompare(b.nome)
+  );
+
   return (
     <div>
       <h4>Convênios</h4>
       <ListGroup>
-        {convenios.map(conv => (
+        {conveniosOrdenados.map(conv => (
           <ListGroup.Item
             key={conv.id}
             action

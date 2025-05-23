@@ -13,7 +13,10 @@ function DefinirDisponibilidadeForm() {
 
   useEffect(() => {
     api.get('/especialidades')
-      .then(res => setEspecialidades(res.data));
+      .then(res => {
+        const ordenadas = res.data.sort((a, b) => a.nome.localeCompare(b.nome));
+        setEspecialidades(ordenadas);
+      });
   }, []);
 
   const handleSubmit = async (e) => {
@@ -31,7 +34,7 @@ function DefinirDisponibilidadeForm() {
 
     const inicioMin = horaParaMinutos(horaInicio);
     const fimMin = horaParaMinutos(horaFim);
-    const duracao = (duracaoConsultaMinutos);
+    const duracao = parseInt(duracaoConsultaMinutos);
 
     if (inicioMin >= fimMin) {
       alert('Hora final deve ser maior que a hora inicial.');
@@ -46,13 +49,16 @@ function DefinirDisponibilidadeForm() {
 
       horariosParaCriar.push({
         medico,
-        especialidadesId: (especialidadesId),
+        especialidadesId: especialidadesId,
         diaSemana,
         horaInicio: hInicio,
         horaFim: hFim,
-        duracaoConsultaMinutos: duracao
+        duracaoConsultaMinutos: duracao,
+        ocupado: false
       });
     }
+
+    horariosParaCriar.sort((a, b) => a.horaInicio.localeCompare(b.horaInicio));
 
     try {
       await Promise.all(
@@ -69,6 +75,7 @@ function DefinirDisponibilidadeForm() {
       setHoraInicio('');
       setHoraFim('');
       setDuracaoConsultaMinutos(30);
+
       window.location.reload();
     } catch (err) {
       alert('Erro ao salvar as disponibilidades.');
@@ -95,7 +102,9 @@ function DefinirDisponibilidadeForm() {
                 <Form.Label>Especialidade</Form.Label>
                 <Form.Select value={especialidadesId} onChange={e => setEspecialidadesId(e.target.value)}>
                   <option value="">Selecione</option>
-                  {especialidades.map(e => <option key={e.id} value={e.id}>{e.nome}</option>)}
+                  {especialidades.map(e => (
+                    <option key={e.id} value={e.id}>{e.nome}</option>
+                  ))}
                 </Form.Select>
               </Form.Group>
             </Col>

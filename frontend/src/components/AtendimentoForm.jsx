@@ -1,43 +1,58 @@
-import React, { useState } from 'react';
-import axios from 'axios';
+import React, { useState, useEffect } from 'react';
 import { Card, Form, Button, Alert } from 'react-bootstrap';
 import { api } from '../services/api';
-  
 
 function AtendimentoForm() {
   const [agendamentoId, setAgendamentoId] = useState('');
   const [observacoes, setObservacoes] = useState('');
   const [resultado, setResultado] = useState(null);
-  const [data, setData] = useState('');
+  const [agendamentos, setAgendamentos] = useState([]);
+  const [atendimentos, setAtendimentos] = useState([]);
+
+  useEffect(() => {
+    Promise.all([
+      api.get('/agendamentos'),
+      api.get('/atendimentos')
+    ]).then(([resAgendamentos, resAtendimentos]) => {
+      const atendimentosExistentes = resAtendimentos.data;
+      const agendamentosOrdenados = resAgendamentos.data
+        .filter(ag => !atendimentosExistentes.find(at => String(at.agendamentoId) === String(ag.id)))
+        .sort((a, b) => a.paciente.localeCompare(b.paciente));
+
+      setAgendamentos(agendamentosOrdenados);
+      setAtendimentos(atendimentosExistentes);
+    });
+  }, []);
 
   const gerarAtendimento = async (e) => {
     e.preventDefault();
 
-    api.get(`agendamentos?id=${agendamentoId}`).then((getresponse) => {
-      const agendamento = getresponse.data[0]; 
+    const agendamento = agendamentos.find(a => String(a.id) === String(agendamentoId));
 
-      if (!agendamento) {
-        alert('Agendamento não encontrado.');
-        return;
-      }
+    if (!agendamento) {
+      alert('Agendamento não encontrado.');
+      return;
+    }
 
-      api.post('atendimentos', {
-        agendamentoId: agendamentoId,
+    try {
+      const response = await api.post('/atendimentos', {
+        agendamentoId: agendamento.id,
         observacoes,
         dataAtendimento: agendamento.dataHora
-      }).then((response) => {
-        setResultado(response.data);
-        alert('Atendimento gerado com sucesso!');
-        setAgendamentoId('');
-        setObservacoes('');
-      }).catch((err) => {
-        alert('Erro ao gerar atendimento.');
       });
-    }).catch((err) => {
-      alert('Erro ao buscar agendamento.');
-    });
-  };
 
+      setResultado(response.data);
+      alert('Atendimento gerado com sucesso!');
+
+      // Remover agendamento da lista após atendimento
+      setAgendamentos(prev => prev.filter(a => a.id !== agendamento.id));
+
+      setAgendamentoId('');
+      setObservacoes('');
+    } catch (err) {
+      alert('Erro ao gerar atendimento.');
+    }
+  };
 
   return (
     <Card>
@@ -45,12 +60,22 @@ function AtendimentoForm() {
         <Card.Title>Gerar Atendimento</Card.Title>
         <Form onSubmit={gerarAtendimento}>
           <Form.Group className="mb-3">
-            <Form.Label>ID do Agendamento</Form.Label>
-            <Form.Control
+            <Form.Label>Selecione o Agendamento</Form.Label>
+            <Form.Select
               value={agendamentoId}
               onChange={e => setAgendamentoId(e.target.value)}
               required
-            />
+            >
+              <option value="">Selecione...</option>
+              {agendamentos.length === 0 && (
+                <option disabled value="">Nenhum agendamento disponível</option>
+              )}
+              {agendamentos.map(a => (
+                <option key={a.id} value={a.id}>
+                  {a.paciente} - {new Date(a.dataHora).toLocaleString()} (ID: {a.id})
+                </option>
+              ))}
+            </Form.Select>
           </Form.Group>
 
           <Form.Group className="mb-3">
@@ -63,7 +88,9 @@ function AtendimentoForm() {
             />
           </Form.Group>
 
-          <Button type="submit" variant="warning">Marcar como Atendido</Button>
+          <Button type="submit" variant="warning" disabled={agendamentos.length === 0}>
+            Marcar como Atendido
+          </Button>
         </Form>
 
         {resultado && (
